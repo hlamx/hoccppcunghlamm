@@ -9,15 +9,10 @@ int main(){
     for(i=1;i<=n;i++)s=max(s,a[i]);
     for(i=1;i<=n;i++){
         t+=s-a[i];
-        c=s/2;
-        hihi+=c-a[i];
     }
-    for(h=1;h<=1000;h++){
-        b=0;
-        for(i=1;i<=n;i++)
-            b=b+abs(a[i]-h);
-        if(b<kq)kq=b;
-    }
-    fo<<t*m<<endl<<kq*m;
+    long long  x = a[n/2-1];
+   
+    for(i=1;i<=n;i++) b+=abs(a[i]-x)
+    fo<<t*m<<endl<<b*m;
     return 0;
 }
