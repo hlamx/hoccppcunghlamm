@@ -1,32 +1,38 @@
-//câu 1 tin học trẻ ( có vài lần check map tới từ vị trí chatgpt ) 
 #include <bits/stdc++.h>
 using namespace std;
-unsigned long long n,m,i,d;
-// Hàm kiểm tra số có phải là số chính phương
+long long x,n,m,i,d,s;
+bool isPrime(int n)
+{
+    // Corner cases
+    if (n <= 1)
+        return false;
+    if (n <= 3)
+        return true;
 
-bool sochinhphuong(long long num) {
-    long long  sqrtNum = sqrt(num);
-    return (sqrtNum * sqrtNum == num);
+    // This is checked so that we can skip
+    // middle five numbers in below loop
+    if (n % 2 == 0 || n % 3 == 0)
+        return false;
+    for (int i = 5; i * i <= n; i = i + 6)
+        if (n % i == 0 || n % (i + 2) == 0)
+            return false;
+
+    return true;
 }
-
+long long bauocbenhat(long long n) {
+    for (long long i = sqrt(n); ; i++) {
+        if (isPrime(i)) {
+            return i * i;
+        }
+    }
+}
 int main()
 {
     ifstream fin("sohoc.inp");
     ofstream fout("sohoc.out");
     fin>>n;
-     m = n;
-     while (d < 3||!sochinhphuong(m)||(int)sqrt(m)%2==0) {
-        m++;
-        d = 0;
 
-        for (i = 1; i <= m; ++i) {
-            if (m % i == 0 ) {
-                d++;
-            }
-        }
-    }
-
-    fout<<m;
+    cout<<bauocbenhat(n);
     fin.close();
     fout.close();
     return 0;
