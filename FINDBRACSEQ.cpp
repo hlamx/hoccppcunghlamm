@@ -10,7 +10,7 @@ int main()
     for(i=0;i<=a.length();i++){
         if(a[i]=='('&&a[i+1]=='('){
                if(a[i+2]==')') {
-             swap(a[i+1],a[i+2]);
+             swap(a[i+1],a[i+2]); // khúc này check var 
            }
         }
     }
