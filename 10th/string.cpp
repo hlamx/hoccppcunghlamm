@@ -1,33 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
+//using ll = long long;
 #define ll long long
-ll x[11],j,i,n;
-ifstream fin("hoanvi.inp");
-ofstream fout("hoanvi.out");
-bool chuaxet[11];
-void saukitu(int i)
-{
-    int j;
-    for(j=0;j<=1;j++)
-        if(x[i-1]!=1 || j != 1){
-            x[i] = j;
-            if(i==n){
-                for(int t = 1;t<=n;t++)
-                    if(x[t] == 0) fout<<"A";
-                    else fout<<"B";
-                fout<<endl;
-            }
-            else saukitu(i+1);
-        }
-}
+string a,b,s,sub;
+ll n,i,j,d,f[5005][5005];
 int main()
 {
-
-    ios_base::sync_with_stdio();
-    fin.tie(NULL);
-    fout.tie(NULL);
-    fin>>n;
-    for(i=1;i<=n;i++) x[i] = 1;
-    saukitu(1);
-    return 0;
+   ios_base::sync_with_stdio();
+   cin.tie(NULL);
+   cout.tie(NULL);
+   freopen("string.inp","r",stdin);
+   freopen("string.out","w",stdout);
+    cin>>a>>b;
+    ll n = a.size();
+    ll m = b.size();
+    for(i=1;i<=n;i++) f[i][n] = 0;
+    for(j=1;j<=m;j++) f[m][j] = 0;
+    for(i = n-1;i>=0;i--)
+    for(j=m-1;j>=0;j--){
+        if(a[i]==b[j]) f[i][j] = f[i+1][j+1]+1;
+        else f[i][j] = max(f[i+1][j],f[i][j+1]);
+    }
+    cout<<f[0][0]<<endl;
+    ll k =0;
+    for(i=n;i>=0;i--)
+    for(j=m;j>=0;j--) {
+        if(f[i][j]>k) {
+            k = f[i][j];
+            sub+=a[i];
+        }
+    }
+    for(i=sub.size()-1;i>=0;i--) s+=sub[i];
+    cout<<s;
 }
