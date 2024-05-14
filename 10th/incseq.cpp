@@ -13,11 +13,11 @@ int main()
     for(i=1;i<=n;i++) cin>>a[i];
     for(i=1;i<=n;i++) {
         jmax = 0;
-        for(j=1;j<i;j++) {
+        for(j=1;j<i;j++) 
             if(a[j]<a[i]&&f[j]>f[jmax]) jmax = j;
             f[i] = f[jmax]+1;
             pos[i]=jmax;
-        }
+        
     }
     ll m = 1;
     for(i=2;i<=n;i++)
